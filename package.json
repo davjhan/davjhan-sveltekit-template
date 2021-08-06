@@ -2,7 +2,7 @@
   "name": "davjhan-project-template",
   "version": "0.0.1",
   "scripts": {
-    "dev": "svelte-kit dev",
+    "dev": "TAILWIND_MODE=watch svelte-kit dev",
     "build": "svelte-kit build",
     "preview": "svelte-kit preview",
     "deploy:dry": "npm run build && netlify deploy",
