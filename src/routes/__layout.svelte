@@ -1,14 +1,6 @@
 <script>
-    import { Navbar } from 'davjhan-core'
-    import 'davjhan-core/src/style.css'
+    import 'broth-css/dist/broth.css'
 </script>
-<style>
-    :global(body) {
-        overflow: hidden;
-        overscroll-behavior: none;
-    }
-</style>
-<div class="container max-w-screen-sm md:border-l md:border-r md:h-screen md:box-content border-gray-100 bg-background">
-    <Navbar subPath='New Project'/>
+<div class='container max-w-screen-lg px-2 mx-auto'>
     <slot/>
 </div>
