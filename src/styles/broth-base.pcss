@@ -1,0 +1,170 @@
+/*
+ * This file includes styling only for semantic HTML5 components.
+ */
+
+/*
+* ----- Typography -----
+*/
+@layer base {
+	a {
+		@apply cursor-pointer;
+	}
+
+	b {
+		@apply font-semibold;
+	}
+
+	p,
+	h4,
+	h5 {
+		@apply py-4;
+
+		a {
+			@apply cursor-pointer underline;
+		}
+	}
+
+	p {
+		@apply p-0;
+	}
+
+	h1 {
+		@apply text-2xl font-bold sm:text-3xl md:text-4xl;
+		@apply inline-flex gap-1;
+	}
+
+	h2 {
+		@apply text-3xl font-bold;
+		@apply inline-flex gap-1;
+	}
+
+	h3 {
+		@apply text-lg font-semibold;
+		@apply inline-flex gap-1;
+	}
+
+	h4 {
+		@apply py-0 font-semibold;
+		@apply inline-flex gap-1;
+	}
+
+	span {
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	span,
+	b,
+	strong {
+		@apply inline;
+	}
+}
+
+/*
+ * Responsiveness
+ */
+@layer base {
+	html {
+		/* Disable black flicker when clicking buttons on mobile safari */
+		-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+		font-size: 14px;
+		@screen sm {
+			font-size: 16px;
+		}
+		@apply text-ink;
+	}
+
+	/* Button style reset
+		button {
+		@apply text-center;
+	}
+	*/
+
+	:not(ul) > li {
+		@apply list-none;
+	}
+
+	* {
+		@apply border-ink;
+	}
+}
+
+/*
+ * Misc
+ */
+@layer components {
+	hr {
+		@apply select-none border-t border-divider;
+
+		&.ink {
+			@apply border-ink;
+		}
+
+		.p-0,
+		.p-4.p-0 & {
+			@apply -mx-0;
+		}
+
+		.p-4 > & {
+			@apply -mx-4;
+		}
+
+		.p-1,
+		.p-4.p-1 > & {
+			@apply -mx-1;
+		}
+	}
+
+	label {
+		@apply text-xs font-semibold;
+	}
+
+	input[type],
+	select {
+		@apply rounded border-divider font-medium text-ink outline-ink placeholder:font-normal placeholder:text-ink-tertiary;
+		@apply focus:ring-accent;
+	}
+
+	code {
+		@apply rounded bg-shade p-1;
+	}
+
+	input[type='checkbox'] {
+		@apply cursor-pointer rounded border-2 border-ink text-ink focus:ring-accent;
+	}
+}
+
+/*
+ * Navigation
+ */
+@layer base {
+	nav {
+		@apply flex items-center;
+
+		button {
+			@apply select-none justify-start rounded px-4 py-2 text-sm text-ink-secondary;
+		}
+
+		button:not(:disabled) {
+			@apply hover:bg-shade hover:text-ink;
+		}
+
+		button.selected {
+			@apply bg-shade-accent text-ink-accent hover:text-ink-accent;
+		}
+	}
+}
+
+/*
+ * Fix Tailwind CSS’s h-screen on iOS Safari
+ * https://benborgers.com/posts/tailwind-h-screen
+ */
+/*noinspection CssInvalidPropertyValue*/
+@supports (-webkit-touch-callout: none) {
+	.h-screen {
+		height: -webkit-fill-available;
+	}
+}

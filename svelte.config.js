@@ -1,38 +1,28 @@
 import adapter from '@sveltejs/adapter-static'
-import path from 'path'
-import preprocess from 'svelte-preprocess'
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-    // Consult https://github.com/sveltejs/svelte-preprocess
-    // for more information about preprocessors
-    preprocess: [
-        preprocess({
-            postcss: true
-        }),
-    ],
-    kit: {
-        adapter: adapter({
-            fallback: '404.html'
-        }),
-        vite: {
-            optimizeDeps: {
-                exclude: ['broth-css']
-            },
-            resolve: {
-                alias: {
-                    $static: path.resolve('/static'),
-                    $views: path.resolve('src/lib/views')
-                }
-            },
-            server: {
-                host: '0.0.0.0',
-                watch: {
-                    followSymlinks: true
-                }
-            }
-        }
-    },
+	// Consult https://kit.svelte.dev/docs/integrations#preprocessors
+	// for more information about preprocessors
+	preprocess: vitePreprocess(),
+
+	kit: {
+		adapter: adapter({
+			fallback: 'index.html', // may differ from host to host
+		}),
+		alias: {
+			$views: 'src/views',
+			$ui: 'src/lib/components',
+			$assets: 'src/lib/assets',
+			$routes: 'src/routes',
+		},
+	},
+	// Disable accessibility warnings
+	onwarn: (warning, handler) => {
+		if (warning.code.includes('a11y')) return
+		handler(warning)
+	},
 }
 
 export default config

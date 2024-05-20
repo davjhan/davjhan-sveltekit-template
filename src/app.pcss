@@ -1,0 +1,41 @@
+@import 'styles/broth-base.pcss';
+@import 'styles/broth-components.pcss';
+@import 'styles/broth-opinionated.pcss';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Tailwind Full height fix:
+ * https://www.npmjs.com/package/@rvxlab/tailwind-plugin-ios-full-height
+ */
+@supports (-webkit-touch-callout: none) {
+	.h-screen {
+		height: -webkit-fill-available;
+	}
+}
+
+button {
+	touch-action: manipulation;
+}
+
+@layer base {
+	* {
+		/* navigating to anchor should scroll */
+		@apply scroll-mt-24;
+	}
+}
+
+@layer base {
+	.lucide-icon {
+		@apply inline-flex h-5 w-5 shrink-0 self-center align-middle;
+
+		&å.sm {
+			@apply h-4 w-4;
+		}
+
+		&.lg {
+			@apply h-8 w-8;
+		}
+	}
+}
